@@ -1,3 +1,4 @@
+package ru.netology;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -19,7 +20,7 @@ public class TestLocal {
 
     @BeforeEach
     void setUp() {
-        driver = new ChromeDriver();
+//        driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
@@ -28,7 +29,7 @@ public class TestLocal {
     }
 
     @AfterEach
-    void cleanAll() {
+    void tearsDown() {
         driver.quit();
         driver = null;
     }
@@ -36,7 +37,6 @@ public class TestLocal {
     @Test
     void test() {
         driver.get("http://localhost:9999/");
-
         driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("Иван Иванов");
         driver.findElement(By.cssSelector("[data-test-id=\"phone\"] input")).sendKeys("+79211234567");
         driver.findElement(By.cssSelector("[data-test-id=\"agreement\"]")).click();
