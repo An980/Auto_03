@@ -150,15 +150,27 @@ public class TestLocal {
 
     //=========================================Check-box tests=========================================//
 
+    @Test
+    void checkBoxText() {
+        driver.get("http://localhost:9999/");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов-Петров Иванович");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79211234567");
+        driver.findElement(By.className("button")).click();
+        String checkbox = driver.findElement(By.cssSelector("[data-test-id='agreement'].input_invalid .checkbox__text")).getText();
+        Assertions.assertEquals("Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй", checkbox.trim());
 
-//    @Test
-//    void checkBox() {
-//        driver.get("http://localhost:9999/");
-//        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов-Петров Иванович");
-//        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79211234567");
-//        driver.findElement(By.className("button")).click();
-//        String text = driver.findElement(By.cssSelector("[data-test-id='agreement'")).getCssValue("input_invalid");
-//        Assertions.assertEquals(getClass("input_invalid"));
-//
-//    }
+    }
+
+    @Test
+    void checkBoxChecked() {
+        driver.get("http://localhost:9999/");
+        driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Иван Иванов-Петров Иванович");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79211234567");
+        driver.findElement(By.className("button")).click();
+
+        boolean check = driver.findElement(By.className("icon")).isSelected();
+        Assertions.assertEquals(false, check);
+
+    }
+
 }
